@@ -1,0 +1,332 @@
+{
+  "info": {
+    "_postman_id": "6f9a916d-ea6a-4a35-8ce0-7922e3a8eeb7",
+    "name": "若依管理系统",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "57288128"
+  },
+  "item": [
+    {
+      "name": "登录",
+      "item": [
+        {
+          "name": "获取登录验证码",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/captchaImage",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "captchaImage"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "登录",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"username\":\"admin\",\r\n    \"password\":\"admin123\",\r\n    \"code\":\"3\",\r\n    \"uuid\":\"edc69b34960d4fd1aa2c682a045997a5\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/login",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "用户管理",
+      "item": [
+        {
+          "name": "新增用户",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userName\": \"postman_test1\",\r\n    \"nickName\": \"Postman测试\",\r\n    \"password\": \"test123\",\r\n    \"deptId\": 103,\r\n    \"phonenumber\": \"15500138000\",\r\n    \"email\": \"test1@test.com\",\r\n    \"sex\": \"0\",\r\n    \"status\": \"0\",\r\n    \"roleIds\": [2],\r\n    \"postIds\": []\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/system/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "system",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "修改用户",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"userId\":113,\r\n    \"userName\": \"postman_test1\",\r\n    \"nickName\": \"Postman修改后的测试账号\",\r\n    \"deptId\": 103,\r\n    \"phonenumber\": \"15500138000\",\r\n    \"email\": \"test1@test.com\",\r\n    \"sex\": \"1\",\r\n    \"status\": \"0\",\r\n    \"roleIds\": [2],\r\n    \"postIds\": []\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/system/user",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "system",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "分页查询",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/system/user/list?pageNum=2&pageSize=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "system",
+                "user",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "pageNum",
+                  "value": "2"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "删除用户",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/system/user/113",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "system",
+                "user",
+                "113"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "角色管理",
+      "item": [
+        {
+          "name": "新增角色",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"roleName\":\"postman角色\",\r\n    \"roleKey\":\"postman_role\",\r\n    \"roleSort\":1,\r\n    \"status\":\"0\",\r\n    \"menuIds\":[1,100,101]\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/system/role",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "system",
+                "role"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "角色查询",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/system/role/list?pageNum=1&pageSize=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "system",
+                "role",
+                "list"
+              ],
+              "query": [
+                {
+                  "key": "pageNum",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "异常验证",
+      "item": [
+        {
+          "name": "未授权验证",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/system/user/list",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "system",
+                "user",
+                "list"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "异常输入验证",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/system/user/99999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "system",
+                "user",
+                "99999"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
